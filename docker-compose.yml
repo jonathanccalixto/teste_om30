@@ -29,3 +29,14 @@ services:
       - "5432:5432"
     volumes:
       - om30_postgresql:/var/lib/postgresql/data
+
+  mailcatcher:
+    image: 'jonathanccalixto/mailcatcher:latest'
+    logging:
+      driver: none
+    networks:
+      - gateway
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    restart: on-failure
