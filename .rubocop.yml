@@ -12,6 +12,10 @@ inherit_mode:
 AllCops:
   NewCops: enable
 
+Layout/LineLength:
+  Exclude:
+    - config/initializers/devise.rb
+
 Metrics/BlockLength:
   Exclude:
     - db/migrate/*.rb
