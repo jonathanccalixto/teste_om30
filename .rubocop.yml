@@ -1,0 +1,26 @@
+require:
+  - rubocop-capybara
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-thread_safety
+
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - db/migrate/*.rb
+    - test/**/*_test.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*.rb
+    - test/**/*_test.rb
+
+Style/Documentation:
+  Enabled: false
