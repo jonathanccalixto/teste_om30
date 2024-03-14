@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_12_185228) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_13_022652) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "municipes", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "cpf", default: "", null: false
+    t.string "cns", default: "", null: false
+    t.string "email", default: "", null: false
+    t.date "birthday", null: false
+    t.string "tellphone", default: "", null: false
+    t.string "status", default: "active", null: false
+    t.datetime "inactivated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cns"], name: "index_municipes_on_cns", unique: true
+    t.index ["cpf"], name: "index_municipes_on_cpf", unique: true
+    t.index ["email"], name: "index_municipes_on_email"
+    t.index ["name"], name: "index_municipes_on_name"
+    t.index ["status"], name: "index_municipes_on_status"
+    t.index ["tellphone"], name: "index_municipes_on_tellphone"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
