@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  municipe: active
+  zip_code: 32443553
+  street: Rua A
+  number: 443
+  neighbourhood: Centro
+  city: Palmas
+  state: TO
+
+two:
+  municipe: inactive
+  zip_code: 34234365
+  street: Avenida Professora Gabriela Varella
+  number: 486A
+  complement: apt 422
+  neighbourhood: Mabel
+  city: Belo Horizonte
+  state: MG
+  ibge: 325r5432
