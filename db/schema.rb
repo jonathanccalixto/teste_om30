@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_142844) do
     t.string "cns", default: "", null: false
     t.string "email", default: "", null: false
     t.date "birthday", null: false
-    t.string "tellphone", default: "", null: false
+    t.string "phone", default: "", null: false
     t.string "status", default: "active", null: false
     t.datetime "inactivated_at"
     t.datetime "created_at", null: false
@@ -57,8 +57,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_142844) do
     t.index ["cpf"], name: "index_municipes_on_cpf", unique: true
     t.index ["email"], name: "index_municipes_on_email"
     t.index ["name"], name: "index_municipes_on_name"
+    t.index ["phone"], name: "index_municipes_on_phone"
     t.index ["status"], name: "index_municipes_on_status"
-    t.index ["tellphone"], name: "index_municipes_on_tellphone"
   end
 
   create_table "users", force: :cascade do |t|
