@@ -8,7 +8,7 @@ class CreateMunicipes < ActiveRecord::Migration[7.1]
       t.string :cns, null: false, default: '', index: { unique: true }
       t.string :email, null: false, default: '', index: true
       t.date :birthday, null: false
-      t.string :tellphone, null: false, default: '', index: true
+      t.string :phone, null: false, default: '', index: true
       t.string :status, null: false, default: 'active', index: true
 
       t.datetime :inactivated_at
