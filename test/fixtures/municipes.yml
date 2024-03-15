@@ -1,0 +1,20 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+active:
+  name: Jason Momoa
+  cpf: 81258804450
+  cns: 181564279970007
+  email: jason.momoa@email.net
+  birthday: 1979-08-01
+  phone: +15556049
+  status: active
+
+inactive:
+  name: Anllela sagra
+  cpf: 83250988138
+  cns: 242874866130009
+  email: anllela.sagra@email.net
+  birthday: 1993-10-06
+  phone: +579139868666
+  status: inactive
+  inactivated_at: 2024-03-15 17:38:05
