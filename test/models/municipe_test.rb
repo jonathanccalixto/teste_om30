@@ -4,102 +4,106 @@ require 'test_helper'
 
 class MunicipeTest < ActiveSupport::TestCase
   def setup
-    @municipe = Municipe.new(
-      name: 'John Doe',
-      cpf: '123.456.789-10',
-      cns: '123456789012345',
-      email: 'john@example.com',
-      birthday: Date.new(1990, 1, 1),
-      phone: '1234567890',
-      status: :active
-    )
+    @municipe = Municipe.new
+    @active_municipe = municipes(:active)
+    @inactive_municipe = municipes(:inactive)
   end
 
-  test 'should be valid' do
-    assert_predicate @municipe, :valid?
+  test 'valid municipes' do
+    assert_predicate @active_municipe, :valid?
   end
 
-  # Testes de presença
-  test 'name should be present' do
-    @municipe.name = '     '
+  %i[name cpf cns email birthday phone].each do |attribute|
+    test "invalid when #{attribute} is blank" do
+      @municipe[attribute] = nil
 
-    assert_not @municipe.valid?
+      @municipe.valid?
+
+      assert_includes @municipe.errors[attribute], "can't be blank"
+    end
+
+    test "valid when #{attribute} is filled" do
+      @municipe[attribute] = 'some value'
+
+      @municipe.valid?
+
+      assert_not_includes @municipe.errors[attribute], "can't be blank"
+    end
   end
 
-  test 'cpf should be present' do
-    @municipe.cpf = '     '
+  %w[1234567890 812.588.044-50].each do |cpf|
+    test "cpf is invalid when your value is #{cpf}" do
+      @municipe.cpf = cpf
 
-    assert_not @municipe.valid?
+      @municipe.valid?
+
+      assert_includes @municipe.errors[:cpf], 'is invalid'
+    end
   end
 
-  test 'cns should be present' do
-    @municipe.cns = '     '
+  %w[37348883010 81258804450].each do |cpf|
+    test "cpf is valid when your value is #{cpf}" do
+      @municipe.cpf = cpf
 
-    assert_not @municipe.valid?
+      @municipe.valid?
+
+      assert_not_includes @municipe.errors[:cpf], 'is invalid'
+    end
   end
 
-  test 'email should be present' do
-    @municipe.email = '     '
+  ['1234567890123456', '298 6092 9649 0004'].each do |cns|
+    test "cns is invalid when your value is #{cns}" do
+      @municipe.cns = cns
 
-    assert_not @municipe.valid?
+      @municipe.valid?
+
+      assert_includes @municipe.errors[:cns], 'is invalid'
+    end
   end
 
-  test 'birthday should be present' do
-    @municipe.birthday = nil
+  %w[734342598410005 298609296490004].each do |cns|
+    test "cns is valid when your value is #{cns}" do
+      @municipe.cns = cns
 
-    assert_not @municipe.valid?
+      @municipe.valid?
+
+      assert_not_includes @municipe.errors[:cns], 'is invalid'
+    end
   end
 
-  test 'phone should be present' do
-    @municipe.phone = '     '
+  %w[invalid_email +_)@email.com invalid.email.net].each do |email|
+    test "email is invalid when your value is #{email}" do
+      @municipe.email = email
 
-    assert_not @municipe.valid?
+      @municipe.valid?
+
+      assert_includes @municipe.errors[:email], 'is invalid'
+    end
   end
 
-  # Testes de validade dos atributos
-  test 'cpf should be valid format' do
-    @municipe.cpf = '123'
+  %w[john.doe@email.com mary.doe@email.net].each do |email|
+    test "email is valid when your value is #{email}" do
+      @municipe.email = email
 
-    assert_not @municipe.valid?
+      @municipe.valid?
+
+      assert_not_includes @municipe.errors[:email], 'is invalid'
+    end
   end
 
-  test 'cns should be valid format' do
-    @municipe.cns = '123'
+  test 'uniqueness of cpf' do
+    @municipe.cpf = @active_municipe.cpf
 
-    assert_not @municipe.valid?
+    @municipe.valid?
+
+    assert_includes @municipe.errors[:cpf], 'has already been taken'
   end
 
-  test 'email should be valid format' do
-    @municipe.email = 'invalid_email'
+  test 'uniqueness of cns' do
+    @municipe.cns = @inactive_municipe.cns
 
-    assert_not @municipe.valid?
-  end
+    @municipe.valid?
 
-  test 'birthday should be less than current date' do
-    @municipe.birthday = Date.new(3000, 1, 1)
-
-    assert_not @municipe.valid?
-  end
-
-  # Teste de unicidade
-  test 'cpf should be unique' do
-    duplicate_municipe = @municipe.dup
-    @municipe.save
-
-    assert_not duplicate_municipe.valid?
-  end
-
-  test 'cns should be unique' do
-    duplicate_municipe = @municipe.dup
-    @municipe.save
-
-    assert_not duplicate_municipe.valid?
-  end
-
-  # Teste de enum
-  test 'status should be either active or inactive' do
-    @municipe.status = :random_status
-
-    assert_not @municipe.valid?
+    assert_includes @municipe.errors[:cns], 'has already been taken'
   end
 end

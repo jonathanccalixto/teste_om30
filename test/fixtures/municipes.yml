@@ -6,7 +6,7 @@ active:
   cns: 181564279970007
   email: jason.momoa@email.net
   birthday: 1979-08-01
-  phone: +15556049
+  phone: "+15556049"
   status: active
 
 inactive:
@@ -15,6 +15,6 @@ inactive:
   cns: 242874866130009
   email: anllela.sagra@email.net
   birthday: 1993-10-06
-  phone: +579139868666
+  phone: "+579139868666"
   status: inactive
   inactivated_at: 2024-03-15 17:38:05
