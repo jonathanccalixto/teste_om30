@@ -51,6 +51,7 @@ gem 'image_processing', '~> 1.2'
 
 gem 'cpf_cnpj', '~> 0.5.0'
 gem 'devise', '~> 4.9.3'
+gem 'simple_form', '~> 5.3.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
