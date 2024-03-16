@@ -1,0 +1,17 @@
+<%-# frozen_string_literal: true %>
+<%%= simple_form_for(<%= singular_table_name %>) do |form| %>
+  <%%= form.error_notification %>
+  <%%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+  <%- attributes.each do |attribute| -%>
+    <%%= form.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
+  <%- end -%>
+  </div>
+
+  <div class="form-actions">
+    <%%= form.button :submit %>
+    <%%= link_to "Show this <%= singular_table_name %>", <%= singular_table_name %> if <%= singular_table_name %>.persisted? %>
+    <%%= link_to "Back to <%= table_name %>", <%= table_name %>_path %>
+  </div>
+<%% end %>
