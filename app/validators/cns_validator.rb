@@ -15,9 +15,7 @@ class CnsValidator < ActiveModel::EachValidator
   ].freeze
 
   def validate_each(record, attribute, value)
-    cns = value.to_s.gsub(/\D/, '') # Remove non-digits
-
-    return if valid_length?(cns) && !invalid_cns?(cns) && valid_checksum?(cns)
+    return if valid_length?(value.to_s) && !invalid_cns?(value.to_s) && valid_checksum?(value.to_s)
 
     error_options = options.except(:allow_blank, :allow_nil).merge!(value:)
     record.errors.add attribute, :invalid, **error_options
