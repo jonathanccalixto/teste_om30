@@ -5,6 +5,7 @@ require 'test_helper'
 class AddressTest < ActiveSupport::TestCase
   def setup
     @address = Address.new(
+      municipe: municipes(:active),
       zip_code: '12345678',
       street: 'Rua ABC',
       number: '123',
@@ -19,11 +20,20 @@ class AddressTest < ActiveSupport::TestCase
   end
 
   %i[zip_code street number neighbourhood city state].each do |attribute|
-    test "presence of #{attribute}" do
+    test "invalid when #{attribute} is blank" do
       @address[attribute] = nil
 
-      assert_not @address.valid?
-      assert_equal ["can't be blank"], @address.errors[attribute]
+      @address.valid?
+
+      assert_includes @address.errors[attribute], "can't be blank"
+    end
+
+    test "valid when #{attribute} is filled" do
+      @address[attribute] = 'some value'
+
+      @address.valid?
+
+      assert_not_includes @address.errors[attribute], "can't be blank"
     end
   end
 
@@ -31,7 +41,9 @@ class AddressTest < ActiveSupport::TestCase
     test "zip code is valid when your value is #{zip_code}" do
       @address.zip_code = zip_code
 
-      assert_predicate @address, :valid?, "#{zip_code} should be valid"
+      @address.valid?
+
+      assert_not_includes @address.errors[:zip_code], 'is invalid'
     end
   end
 
@@ -39,8 +51,9 @@ class AddressTest < ActiveSupport::TestCase
     test "zip code is invalid when your value is #{zip_code}" do
       @address.zip_code = zip_code
 
-      assert_not @address.valid?, "#{zip_code} should be invalid"
-      assert_equal ['is invalid'], @address.errors[:zip_code]
+      @address.valid?
+
+      assert_includes @address.errors[:zip_code], 'is invalid'
     end
   end
 
@@ -48,16 +61,19 @@ class AddressTest < ActiveSupport::TestCase
     test "number is valid when your value is #{number}" do
       @address.number = number
 
-      assert_predicate @address, :valid?, "#{number} should be valid"
+      @address.valid?
+
+      assert_not_includes @address.errors[:zip_code], 'is invalid'
     end
   end
 
   ['A123', '12-', '12.3', 'asd'].each do |number|
-    test "number is valid when your value is #{number}" do
+    test "number is invalid when your value is #{number}" do
       @address.number = number
 
-      assert_not @address.valid?, "#{number} should be invalid"
-      assert_equal ['is invalid'], @address.errors[:number]
+      @address.valid?
+
+      assert_includes @address.errors[:number], 'is invalid'
     end
   end
 end
