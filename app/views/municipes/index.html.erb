@@ -1,0 +1,36 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Municipes</h1>
+
+<div id="municipes">
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>email</th>
+        <th>phone</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <%- municipes.each do |municipe| %>
+      <tr>
+        <td><%= municipe.id %></td>
+        <td><%= municipe.name %></td>
+        <td><%= municipe.email %></td>
+        <td><%= municipe.phone %></td>
+        <td>
+          <%= link_to "Show", municipe %>
+          <%= link_to "Edit", edit_municipe_path(municipe) %>
+          <%= link_to "Delete", municipe, data: { turbo_method: :delete } %>
+        </td>
+      </tr>
+      <p>
+      </p>
+    <%- end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New municipe", new_municipe_path %>

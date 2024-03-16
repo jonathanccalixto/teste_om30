@@ -1,0 +1,21 @@
+<%= simple_form_for(municipe) do |form| %>
+  <%= form.error_notification %>
+  <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= form.input :name %>
+    <%= form.input :cpf %>
+    <%= form.input :cns %>
+    <%= form.input :email %>
+    <%= form.input :birthday %>
+    <%= form.input :phone %>
+    <%= form.input :status %>
+    <%= form.input :photo %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.button :submit %>
+    <%= link_to "Show this municipe", municipe if municipe.persisted? %>
+    <%= link_to "Back to municipes", municipes_path %>
+  </div>
+<% end %>
