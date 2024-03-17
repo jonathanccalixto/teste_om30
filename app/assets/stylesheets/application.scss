@@ -5,3 +5,12 @@
   display: none;
   visibility: hidden;
 }
+
+.card-tall {
+  height: 100vh;
+
+  > .card-body {
+    width: 80%;
+    margin: 0px auto;
+  }
+}
