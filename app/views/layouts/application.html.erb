@@ -10,12 +10,17 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <div class='container-lg'>
-      <%= render 'menu' %>
-      <%= render 'alert' %>
+  <body class="text-bg-dark">
+    <div class="container-lg">
 
-      <%= yield %>
+      <div class="card card-tall">
+        <div class="card-body">
+          <%= render 'menu' %>
+          <%= render 'alert' %>
+
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>
