@@ -3,9 +3,10 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "bootstrap"
 import 'vanillajs-datepicker'
+import 'vanillajs-datepicker-pt-BR'
 
 document.addEventListener('turbo:load', () => {
-  document.querySelectorAll('input.date').forEach((dateField) => {
-    new Datepicker(dateField);
+  document.querySelectorAll('input.date').forEach((field) => {
+    new Datepicker(field, { language: 'pt-BR' });
   });
 });
