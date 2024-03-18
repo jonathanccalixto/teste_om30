@@ -1,21 +1,22 @@
 <%= simple_form_for(municipe) do |form| %>
-  <%= form.error_notification %>
+  <%#= form.error_notification %>
   <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
   <div class="form-inputs">
     <%= form.input :name %>
-    <%= form.input :cpf %>
-    <%= form.input :cns %>
     <%= form.input :email %>
-    <%= form.input :birthday %>
-    <%= form.input :phone %>
-    <%= form.input :status %>
+    <div class="row">
+      <%= form.input :cpf, wrapper_html: { class: 'col-3' } %>
+      <%= form.input :cns, wrapper_html: { class: 'col-3' } %>
+      <%= form.input :birthday, as: :string, wrapper_html: { class: 'col-3' } %>
+      <%= form.input :phone, wrapper_html: { class: 'col-3' } %>
+    </div>
     <%= form.input :photo %>
   </div>
 
   <div class="form-actions">
-    <%= form.button :submit %>
-    <%= link_to "Show this municipe", municipe if municipe.persisted? %>
-    <%= link_to "Back to municipes", municipes_path %>
+    <%= form.button :submit, class: 'btn btn-primary' %>
+    <%= link_to t(:'buttons.municipes.index'), municipes_path, class: 'btn btn-link float-end' %>
+    <%= link_to t(:'buttons.municipes.show'), municipe, class: 'btn btn-link float-end' if municipe.persisted? %>
   </div>
 <% end %>
