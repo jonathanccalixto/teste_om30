@@ -1,0 +1,6 @@
+pt-BR:
+  titles:
+    municipes:
+      new: 'Cadastro de cidadão'
+      edit: 'Cadastro de cidadão'
+      index: 'Listagem de cidadãos'

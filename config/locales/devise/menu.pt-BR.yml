@@ -1,0 +1,6 @@
+pt-BR:
+  menus:
+    registrations:
+      edit: 'Alterar minhas informações'
+    sessions:
+      delete: 'Logout'

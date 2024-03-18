@@ -1,0 +1,10 @@
+pt-BR:
+  buttons:
+    municipes:
+      active: 'Ativar Cidadãos'
+      destroy: 'Apagar Cidadão'
+      edit: 'Editar Cidadão'
+      inactive: 'Desativar Cidadãos'
+      index: 'Listagem de Cidadãos'
+      new: 'Novo Cidadão'
+      show: 'Detallhes do Cidadão'
