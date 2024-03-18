@@ -1,4 +1,10 @@
-<%= simple_form_for(municipe) do |form| %>
+<%= simple_form_for(
+  municipe,
+  model_name: :municipe,
+  url: resource_path(municipe.municipe),
+  method: municipe.municipe.persisted? ? :put : :post,
+  html: { multipart: true }) do |form|
+%>
   <%#= form.error_notification %>
   <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
@@ -28,18 +34,47 @@
                      wrapper_html: { class: 'col-3' }
       %>
     </div>
-    <%= form.input :photo %>
+
+    <%= form.input :photo, as: :file %>
+
+    <div class="row">
+      <%= form.input :street,
+                     wrapper_html: { class: 'col-4' }
+      %>
+      <%= form.input :number,
+                     wrapper_html: { class: 'col-2' }
+      %>
+      <%= form.input :complement,
+                     wrapper_html: { class: 'col-3' }
+      %>
+      <%= form.input :neighbourhood,
+                     wrapper_html: { class: 'col-3' }
+      %>
+    </div>
+    <div class="row">
+      <%= form.input :city,
+                     wrapper_html: { class: 'col-6' }
+      %>
+      <%= form.input :state,
+                     wrapper_html: { class: 'col-2' }
+      %>
+      <%= form.input :ibge, wrapper_html: { class: 'col-2' } %>
+      <%= form.input :zip_code,
+                     input_html: { data: { mask: '99999-999' } },
+                     wrapper_html: { class: 'col-2' }
+      %>
+    </div>
   </div>
 
   <div class="form-actions">
     <%= form.button :submit, class: 'btn btn-primary' %>
     <%= link_to t(:'buttons.municipes.index'), municipes_path, class: 'btn btn-link float-end' %>
 
-    <%= link_to toggle_municipe_path(municipe),
+    <%= link_to toggle_municipe_path(municipe.municipe),
                 data: { turbo_method: :patch },
                 class: 'btn btn-link float-end' do
     %>
-      <%= municipe.inactive? ? t(:'buttons.municipes.active') : t(:'buttons.municipes.inactive') %>
-    <%- end if municipe.persisted? %>
+      <%= municipe.municipe.inactive? ? t(:'buttons.municipes.active') : t(:'buttons.municipes.inactive') %>
+    <%- end if municipe.municipe.persisted? %>
   </div>
 <%- end %>

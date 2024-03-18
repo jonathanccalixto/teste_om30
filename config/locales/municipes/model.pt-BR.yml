@@ -6,7 +6,7 @@ pt-BR:
         other: 'Cidadãos'
 
     attributes:
-      municipe:
+      municipe: &municipe
         id: '#'
         name: 'Nome'
         cpf: 'CPF'
@@ -16,3 +16,20 @@ pt-BR:
         status: 'Status'
         birthday: 'Data de nascimento'
         photo: 'Foto'
+
+      address: &address
+        id: '#'
+        street: 'Logradouro'
+        number: 'Número'
+        complement: 'Complemento'
+        neighbourhood: 'Bairro'
+        city: 'Cidade'
+        state: 'Estado'
+        zip_code: 'CEP'
+        ibge: 'Cód. IBGE'
+
+  activeform:
+    attributes:
+      municipe_form:
+        <<: *municipe
+        <<: *address
