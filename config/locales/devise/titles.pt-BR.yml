@@ -1,0 +1,13 @@
+pt-BR:
+  titles:
+    devise:
+      registrations:
+        delete: 'Cancelar minha conta'
+        edit: 'Alterar minha conta'
+        new: 'Registrar-se'
+        unhappy: 'Está infeliz?'
+      sessions:
+        new: 'Login'
+      passwords:
+        edit: 'Alterar sua senha'
+        new: 'Esqueceu sua senha?'

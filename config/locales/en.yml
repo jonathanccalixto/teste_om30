@@ -2,15 +2,15 @@
 # are automatically loaded by Rails. If you want to use locales other than
 # English, add the necessary files in this directory.
 #
-# To use the locales, use `I18n.t`:
+# To use the locales, use 'I18n.t':
 #
 #     I18n.t "hello"
 #
-# In views, this is aliased to just `t`:
+# In views, this is aliased to just 't':
 #
 #     <%= t("hello") %>
 #
-# To use a different locale, set it with `I18n.locale`:
+# To use a different locale, set it with 'I18n.locale':
 #
 #     I18n.locale = :es
 #
@@ -20,7 +20,7 @@
 # at https://guides.rubyonrails.org/i18n.html.
 #
 # Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
+# booleans: 'true', 'false', 'on', 'off', 'yes', 'no'. Therefore, these strings
 # must be quoted to be interpreted as strings. For example:
 #
 #     en:
@@ -29,3 +29,17 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    link:
+      confirmations:
+        new: "Didn't receive confirmation instructions?"
+      unlocks:
+        new: "Didn't receive unlock instructions?"
+      omniauth:
+        new: "Sign in with %{provider}"
+      passwords:
+        new: "Forgot your password?"
+      registrations:
+        new: "Sign up"
+      sessions:
+        new: "Log in"

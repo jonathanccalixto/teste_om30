@@ -1,0 +1,6 @@
+pt-BR:
+  activerecord:
+    attributes:
+      devise/passwords/edit:
+        password: 'Nova senha'
+        password_confirmation: 'Confirmar nova senha'

@@ -1,0 +1,22 @@
+pt-BR:
+  helpers:
+    submit:
+      sign_in: 'Logar'
+      sign_up: 'Registrar'
+      change_me: 'Atualizar'
+      cancel_me: 'Cancelar minha conta'
+      send_password_instructions: 'Envie-me as instruções para resetar minha senha'
+      change_password: 'Alterar minha senha'
+    link:
+      confirmations:
+        new: 'Não recebeu as instruções de confirmação?'
+      unlocks:
+        new: 'Não recebeu as instruções de desbloqueio?'
+      omniauth:
+        new: 'Login com %{provider}'
+      passwords:
+        new: 'Esqueceu sua senha?'
+      registrations:
+        new: 'Registrar-se'
+      sessions:
+        new: 'Login'
