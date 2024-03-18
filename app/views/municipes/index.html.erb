@@ -1,9 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<h3>
+  <%= t 'titles.municipes.index' %>
 
-<h1>Municipes</h1>
+  <%= link_to t(:'buttons.municipes.new'),
+              new_municipe_path,
+              class: 'btn btn-outline-secondary float-end'
+  %>
+</h3>
 
-<div id="municipes">
-  <table>
+<div id="municipes table-responsive">
+  <table class="table table-hover table-striped align-middle">
     <thead>
       <tr>
         <th>id</th>
@@ -21,9 +26,39 @@
         <td><%= municipe.email %></td>
         <td><%= municipe.phone %></td>
         <td>
-          <%= link_to "Show", municipe %>
-          <%= link_to "Edit", edit_municipe_path(municipe) %>
-          <%= link_to "Delete", municipe, data: { turbo_method: :delete } %>
+          <%= link_to municipe,
+                      class: 'btn btn-secondary',
+                      title: t(:'buttons.municipes.show') do
+          %>
+            <i class="bi bi-eye-fill"></i>
+          <%- end %>
+          <%= link_to edit_municipe_path(municipe),
+                      class: 'btn btn-secondary',
+                      title: t(:'buttons.municipes.edit') do
+          %>
+            <i class="bi bi-pencil-square"></i>
+          <%- end %>
+          <%= link_to municipe,
+                      data: { turbo_method: :delete },
+                      class: 'btn btn-danger',
+                      title: t(:'buttons.municipes.destroy') do
+          %>
+            <i class="bi bi-trash3"></i>
+          <%- end %>
+          <%= link_to toggle_municipe_path(municipe),
+                      data: { turbo_method: :patch },
+                      class: 'btn btn-danger',
+                      title: t(:'buttons.municipes.inactive') do
+          %>
+            <i class="bi bi-x-circle-fill"></i>
+          <%- end %>
+          <%= link_to toggle_municipe_path(municipe),
+                      data: { turbo_method: :patch },
+                      class: 'btn btn-success',
+                      title: t(:'buttons.municipes.active') do
+          %>
+            <i class="bi bi-check-circle-fill"></i>
+          <%- end %>
         </td>
       </tr>
       <p>
@@ -33,4 +68,3 @@
   </table>
 </div>
 
-<%= link_to "New municipe", new_municipe_path %>
