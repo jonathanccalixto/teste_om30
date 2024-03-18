@@ -6,14 +6,26 @@
     <%= form.input :name %>
     <%= form.input :email %>
     <div class="row">
-      <%= form.input :cpf, wrapper_html: { class: 'col-3' } %>
-      <%= form.input :cns, wrapper_html: { class: 'col-3' } %>
-      <%= form.input :birthday,
-                     as: :string,
-                     input_html: { class: 'date' },
+      <%= form.input :cpf,
+                     input_html: { data: { mask: '999.999.999-99' } },
                      wrapper_html: { class: 'col-3' }
       %>
-      <%= form.input :phone, wrapper_html: { class: 'col-3' } %>
+      <%= form.input :cns,
+                     input_html: { data: { mask: '999 9999 9999 9999' } },
+                     wrapper_html: { class: 'col-3' }
+      %>
+      <%= form.input :birthday,
+                     as: :string,
+                     input_html: {
+                       readonly: true,
+                       class: 'date'
+                     },
+                     wrapper_html: { class: 'col-3' }
+      %>
+      <%= form.input :phone,
+                     input_html: { data: { mask: '+99 [99 ]9999[9]-9999' } },
+                     wrapper_html: { class: 'col-3' }
+      %>
     </div>
     <%= form.input :photo %>
   </div>
