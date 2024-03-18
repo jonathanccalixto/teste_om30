@@ -4,9 +4,35 @@ networks:
   gateway: {}
 
 volumes:
+  om30_bundle:
   om30_postgresql:
 
 services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    command: foreman start -f Procfile.dev
+    depends_on:
+      - postgres
+      - mailcatcher
+    environment:
+      - BINDING=0.0.0.0
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=postgres
+      - DOMAIN=http://localhost
+      - PORT=3000
+      - MAILCATCHER_HOST=mailcatcher
+      - MAILCATCHER_PORT=1025
+    networks:
+      - gateway
+    volumes:
+      - ".:/rails"
+      - om30_bundle:/usr/local/bundle
+
   postgres:
     environment:
       - POSTGRES_USER=postgres
