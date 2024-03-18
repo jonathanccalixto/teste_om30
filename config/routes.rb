@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :municipes do
+  resources :municipes, except: %i[destroy] do
     patch :toggle, on: :member
   end
 end

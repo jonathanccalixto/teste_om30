@@ -21,7 +21,7 @@ class MunicipesController < ApplicationController
 
     respond_to do |format|
       if municipe.save
-        format.html { redirect_to municipe_url(municipe), notice: 'Municipe was successfully created.' }
+        format.html { redirect_to edit_municipe_url(municipe), notice: 'Municipe was successfully created.' }
         format.json { render :show, status: :created, location: municipe }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,7 +34,7 @@ class MunicipesController < ApplicationController
   def update
     respond_to do |format|
       if municipe.update(municipe_params)
-        format.html { redirect_to municipe_url(municipe), notice: 'Municipe was successfully updated.' }
+        format.html { redirect_to edit_municipe_url(municipe), notice: 'Municipe was successfully updated.' }
         format.json { render :show, status: :ok, location: municipe }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,7 +49,7 @@ class MunicipesController < ApplicationController
 
     respond_to do |format|
       if municipe.toggle_status
-        format.html { redirect_to municipes_url(municipe), notice: 'Municipe was successfully updated.' }
+        format.html { redirect_to edit_municipe_url(municipe), notice: 'Municipe was successfully updated.' }
         format.json { render :show, status: :ok, location: municipe }
       end
     end

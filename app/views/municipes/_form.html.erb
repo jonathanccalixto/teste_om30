@@ -18,7 +18,8 @@
                      as: :string,
                      input_html: {
                        readonly: true,
-                       class: 'date'
+                       class: 'date',
+                       value: adorne(municipe).birthday
                      },
                      wrapper_html: { class: 'col-3' }
       %>
@@ -33,6 +34,12 @@
   <div class="form-actions">
     <%= form.button :submit, class: 'btn btn-primary' %>
     <%= link_to t(:'buttons.municipes.index'), municipes_path, class: 'btn btn-link float-end' %>
-    <%= link_to t(:'buttons.municipes.show'), municipe, class: 'btn btn-link float-end' if municipe.persisted? %>
+
+    <%= link_to toggle_municipe_path(municipe),
+                data: { turbo_method: :patch },
+                class: 'btn btn-link float-end' do
+    %>
+      <%= municipe.inactive? ? t(:'buttons.municipes.active') : t(:'buttons.municipes.inactive') %>
+    <%- end if municipe.persisted? %>
   </div>
-<% end %>
+<%- end %>
