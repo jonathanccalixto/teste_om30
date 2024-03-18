@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class MunicipesController < ApplicationController
-  before_action :build_municipe, only: %i[new create]
+  before_action :build_municipe_form, only: %i[new create]
+  before_action :find_municipe_form, only: %i[edit update]
 
   # GET /municipes or /municipes.json
   def index; end
@@ -45,8 +46,6 @@ class MunicipesController < ApplicationController
 
   # PATCH /municipes/1/toggle or /municipes/1/toggle.json
   def toggle
-    municipe = Municipe.find(params[:id])
-
     respond_to do |format|
       if municipe.toggle_status
         format.html { redirect_to edit_municipe_url(municipe), notice: 'Municipe was successfully updated.' }
@@ -67,8 +66,19 @@ class MunicipesController < ApplicationController
 
   private
 
-  def build_municipe
-    @municipe = Municipe.new
+  def resource_path(resource)
+    return resource if resource.persisted?
+
+    municipes_path
+  end
+  helper_method :resource_path
+
+  def build_municipe_form
+    @municipe = MunicipeForm.new
+  end
+
+  def find_municipe_form
+    @municipe = MunicipeForm.new municipe_id: params[:id]
   end
 
   def municipe
@@ -84,7 +94,8 @@ class MunicipesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def municipe_params
     params.require(:municipe).permit(
-      :name, :cpf, :cns, :email, :birthday, :phone, :photo
+      :name, :cpf, :cns, :email, :birthday, :phone, :photo, :street, :number,
+      :complement, :neighbourhood, :city, :state, :ibge, :zip_code
     )
   end
 end
