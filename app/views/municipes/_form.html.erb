@@ -8,7 +8,11 @@
     <div class="row">
       <%= form.input :cpf, wrapper_html: { class: 'col-3' } %>
       <%= form.input :cns, wrapper_html: { class: 'col-3' } %>
-      <%= form.input :birthday, as: :string, wrapper_html: { class: 'col-3' } %>
+      <%= form.input :birthday,
+                     as: :string,
+                     input_html: { class: 'date' },
+                     wrapper_html: { class: 'col-3' }
+      %>
       <%= form.input :phone, wrapper_html: { class: 'col-3' } %>
     </div>
     <%= form.input :photo %>
