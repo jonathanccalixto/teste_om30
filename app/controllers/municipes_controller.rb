@@ -43,6 +43,18 @@ class MunicipesController < ApplicationController
     end
   end
 
+  # PATCH /municipes/1/toggle or /municipes/1/toggle.json
+  def toggle
+    municipe = Municipe.find(params[:id])
+
+    respond_to do |format|
+      if municipe.toggle_status
+        format.html { redirect_to municipes_url(municipe), notice: 'Municipe was successfully updated.' }
+        format.json { render :show, status: :ok, location: municipe }
+      end
+    end
+  end
+
   # DELETE /municipes/1 or /municipes/1.json
   def destroy
     municipe.destroy!

@@ -12,5 +12,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :municipes
+  resources :municipes do
+    patch :toggle, on: :member
+  end
 end

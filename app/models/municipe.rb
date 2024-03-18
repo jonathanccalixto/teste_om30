@@ -22,4 +22,8 @@ class Municipe < ApplicationRecord
                     email: { allow_blank: true }
   validates :birthday, date: { required: true, less_than: -> { Date.current } }
   validates :phone, presence: true, phone: { allow_blank: true }
+
+  def toggle_status
+    update status: active? ? :inactive : :active
+  end
 end
